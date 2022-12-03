@@ -1,0 +1,35 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 500
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: min-service
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 80MB
+      max-file-size: 80MB
+  data:
+    mongodb:
+      host: 127.0.0.1
+      database: botion
+
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      bootstrap-servers: ${KAFKA_CONNECT:localhost:9092}
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      bootstrap-servers: ${KAFKA_CONNECT:localhost:9092}
+
