@@ -46,13 +46,20 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
-  botionServer:
-    build: botionServer
+  mongo:
+    image: mongo
+    restart: always
+  botion-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     depends_on:
       - kafka
+      - mongo
     environment:
       - KAFKA_CONNECT=kafka:9092
+      - MONGO_HOST=mongo:27017
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro

@@ -1,5 +1,6 @@
 FROM openjdk:11-jre-slim
 
+WORKDIR /
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_OPTS="" \
     PORT=8080 \

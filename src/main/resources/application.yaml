@@ -22,7 +22,7 @@ spring:
       max-file-size: 80MB
   data:
     mongodb:
-      host: 127.0.0.1
+      host: ${MONGO_HOST:127.0.0.1}
       database: botion
 
   kafka:
